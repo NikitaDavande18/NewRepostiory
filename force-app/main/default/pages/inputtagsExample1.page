@@ -1,0 +1,13 @@
+<apex:page >
+  <apex:form >
+  <h1>Please Fill The Below Deatils</h1> <br/> <br/>
+  
+  Enter Name:<apex:inputText id="name"/> <br/> <br/>
+  Enter Age:<apex:inputText id="age"/> <br/> <br/>
+  Enter a Username:<apex:inputText id="username"/> <br/> <br/>
+  Enter a Password:<apex:inputsecret id="password"/> <br/> <br/>
+  Cover Letter:<apex:inputtextarea id="coverletter"/> <br/> <br/>
+  Are you currently employee: <apex:inputCheckbox id="empl"/><br/> <br/>
+  <apex:commandButton value="Save"/>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,34 @@
+.dummy{
+	color : black;
+}
+.describtion
+{
+	font-family: "Roboto", sans-serif;
+	font-size: 0.8rem;
+    font-style: italic;
+    color: #2c2b2b;
+    margin-left: 14px;
+    margin-right: 14px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.field
+{
+	font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 1.02rem;
+    color: rgb(19, 19, 19);
+    text-rendering: optimizeLegibility;
+	padding-top: 15px;
+}
+.form
+{
+	font-weight: bold;
+	color: rgb(19, 19, 19);
+	text-rendering: optimizeLegibility;
+}
+.indicator
+{
+    max-height: 600px !important;
+
+}

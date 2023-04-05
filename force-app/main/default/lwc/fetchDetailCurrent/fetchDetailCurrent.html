@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Fetch the user current Detail"></lightning-card>
+<template if:true={UserData.date}>
+    {userData.date.Name}<br/>
+    {userData.date.Title}<br/>
+    {userData.date.Profile.Name}<br/>
+</template>
+<template if:true={userData.error}>
+    {userData.error}
+</template>
+</lightning-card>
+</template>

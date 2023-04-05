@@ -1,0 +1,38 @@
+<template>   
+    <div class="slds-box" style="background-color: rgb(248, 244, 0);"> 
+    <lightning-card  title="REGEX COMPONENT" ></lightning-card> 
+</div>
+    <lightning-card title="Adhar Card Details">
+        <div class= "slds-box" style="background-color: bisque;">
+           <lightning-input class="fs-16 pb-5" label="Enter 12 digit Aadhaar number (UID)" pattern="^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$" message-when-pattern-mismatch="Please enter a valid Aadhar number" placeholder="12 Digit UID (1234/1234/1234)" type="text" required  onchange={handleChange}>
+         </lightning-input>
+        </div>
+    </lightning-card>
+    
+    <lightning-card title="PAN Card Details">
+        <div class= "slds-box" style="background-color: bisque;">
+           <lightning-input class="fs-16 pb-5" label="Enter 10 Digit PAN card number (PID)" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" message-when-pattern-mismatch="Please Enter a valid PANCARD number (PID)"  type="text"  required placeholder="10 Digit PID (ABCD2318A)" onchange={handleChange}>
+        </lightning-input>
+        
+        </div>
+    </lightning-card>
+    <lightning-card title="Phone Number Details">
+        <div class= "slds-box" style="background-color: bisque;">
+           <lightning-input class="fs-16 pb-5" label="Enter Phone number" pattern="P" message-when-pattern-mismatch="Please Enter a valid Phone number"  type="number"  required placeholder="Phone Number" onchange={handleChange}>
+        </lightning-input>
+        </div>
+    </lightning-card>
+    <lightning-card title="Email Deatils">
+        <div class= "slds-box" style="background-color: bisque;">
+           <lightning-input class="fs-16 pb-5" label="Enter Email " pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,5})$"  message-when-pattern-mismatch="Please Enter a valid Email" type="text" required placeholder="Email Id" onchange={handleChange}>
+        </lightning-input>
+        </div>
+    </lightning-card>
+    <lightning-card title="Postal Code Deatils">
+        <div class= "slds-box" style="background-color: bisque;">
+           <lightning-input class="fs-16 pb-5" label="Enter Postal Code" pattern="\d{6}(-\\d{4})?" message-when-pattern-mismatch="Please Enter a valid Postal number"  required placeholder="Postal Code" onchange={handleChange}>
+        </lightning-input>
+        </div>
+    </lightning-card>
+   
+   </template>

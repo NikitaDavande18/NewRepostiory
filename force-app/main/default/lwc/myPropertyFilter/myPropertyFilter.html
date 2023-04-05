@@ -1,0 +1,39 @@
+<template>
+    <lightning-layout multiple-rows style="background-color: darkturquoise;">
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">              
+                <lightning-combobox label="Locality" placeholder="Select Locality" field-level-help="Search property based on locality"
+                    variant="label-stacked" value={location} options={locationOptions}  onchange={handleLocationChange}>
+                </lightning-combobox>               
+            </div> 
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <lightning-combobox label="No of Bedroom" placeholder="Select" field-level-help="Search property based on No of Bed Room"
+                    variant="label-stacked" value={noOfBedRoom} options={noOfBedRoomOptions}  onchange={handleBedroomChange}>
+                </lightning-combobox>
+                 
+            </div> 
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <lightning-combobox label="No of Bath Room" placeholder="Select" field-level-help="Search property based on No of Bath Room"
+                    variant="label-stacked" value={noOfBathRoom} options={noOfBathRoomOptions}  onchange={handlebathroomChange}>
+                </lightning-combobox>
+               
+            </div> 
+        </lightning-layout-item>
+       <!-- <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <lightning-input type="number" value={minBudget} name="minbudget" label="Minimum Budget" placeholder="Enter minimum Budget"></lightning-input>
+                 
+            </div> 
+        </lightning-layout-item>-->
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <lightning-input type="number" value={maxBudget} onchange={handelbudgetchange} field-level-help="Search property based on your budget" name="maxbudget" label="Maximum Budget" placeholder="Enter maximum Budget"></lightning-input>
+                  
+            </div> 
+        </lightning-layout-item>
+    </lightning-layout>   
+</template>

@@ -1,0 +1,31 @@
+<template>
+    <lightning-tabset>
+            <lightning-tab label="Property Details">
+                <div class="slds-p-around_medium">
+                <c-property-detail property={property} property-found={propertyFound}></c-property-detail>
+                </div>
+            </lightning-tab>
+            <lightning-tab label="Pricing Details">
+                    <div class="slds-p-around_medium">
+                <c-property-pricing property={property} property-found={propertyFound}></c-property-pricing>
+            </div>
+            </lightning-tab>
+            <lightning-tab label="Owner Details">
+                    <template if:true={propertyFound}>
+                    <div class="slds-p-around_medium" style="background-color: azure">
+                            <c-my-property-owner property-owner-id={property.Property_Owner__c}></c-my-property-owner>
+                        </div>                         
+               
+            </template>
+          
+            </lightning-tab>
+            <lightning-tab label="Property Video">
+                    <c-property-video property={property}></c-property-video>
+            </lightning-tab>
+    </lightning-tabset>
+    <template if:true={propertyFound}>
+
+            <c-property-location property-id={property.Id} ></c-property-location>
+            
+    </template>
+</template>

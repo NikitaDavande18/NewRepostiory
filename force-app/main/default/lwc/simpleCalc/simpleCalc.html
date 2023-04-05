@@ -1,0 +1,16 @@
+<template>
+  <lightning-input label="Number 1" name="num1" onchange={handleChangeNum1}> </lightning-input>
+  <lightning-input
+    label="Number 2" name="num2" onchange={handleChangeNum2}> </lightning-input>
+  <lightning-button label="Addition it!" onclick={calcExpr}></lightning-button>
+  <lightning-button label="Substraction it!" onclick={calcExpr2}></lightning-button>
+  <lightning-button label="MUltiplication it!" onclick={calcExpr3}></lightning-button>
+  <lightning-button label="Division it!" onclick={calcExpr4}></lightning-button>
+  
+  <lightning-input
+    label="Result"
+    name="result"
+    read-only="true"
+    value={result}
+  ></lightning-input>
+</template>

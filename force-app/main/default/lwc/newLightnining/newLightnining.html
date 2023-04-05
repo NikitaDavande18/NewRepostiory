@@ -1,0 +1,376 @@
+<template>
+
+    <div class="slds-card slds-m-horizontal_large" style="font-family: 'Open Sans', sans-serif">
+
+        <!-- Spinner -->
+        <template if:true={showSpinner}>
+            <div class="slds-is-relative slds-m-around_large slds-align_absolute-center" style="min-height: 300px; !important;">
+                <lightning-spinner alternative-text="Loading..." variant="brand"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={showSpinner}>
+            <!-- Header -->
+            <div class="slds-card__header slds-p-bottom_small">
+                <header>
+                    <lightning-progress-indicator current-step={step} type="path" variant="base" has-error="false">
+                        <lightning-progress-step label="COMPANY INFORMATION" value="1" onclick={nextPage}></lightning-progress-step>
+                        <lightning-progress-step label="COMPANY CONTACT INFORMATION" value="2" onclick={nextPage}></lightning-progress-step>
+                        <lightning-progress-step label="DPN AGREEMENTS" value="3" onclick={nextPage}></lightning-progress-step>
+                        <lightning-progress-step label="OTHERS" value="4" onclick={nextPage}></lightning-progress-step>
+                    </lightning-progress-indicator>
+                </header>
+            </div>
+
+            <!-- First Page -->
+            <template if:true={showFirstPage}>
+                <div class="slds-scrollable_y" style="max-height: 600px; !important; margin-left:22px; margin-right:22px; ">
+                    <lightning-input label="Company Name" placeholder="Admin Within Test"  class="form validate " disabled="" required> </lightning-input>
+                    <div class="slds-grid slds-gutters form" style="padding-top: 15px;">
+                        <div class="slds-col slds-p-right_large slds-size_1-of-2 ">
+                        <lightning-input   label="Company Website" placeholder="https://www.testadmin.com" disabled=""  onchange={handleFieldChanged}> </lightning-input>                 
+                        </div>
+                        <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                            <lightning-input   label="Company Website Partner or Service Section" placeholder="www.adminwithin.com" required class="comm-form-input inpcls_sty"> </lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters form" style="padding-top: 15px;"> 
+                        <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                            <lightning-combobox label="Country"  placeholder="United States" value={value}  options={optionsCountryList} onchange={optionsCountryChange} disabled="" >
+                                </lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                            <lightning-combobox  label="State / Province" placeholder="Massachusetts" value={value} options={optionsStateList} onchange={optionsStateChange}   disabled="" > </lightning-combobox>
+                        </div>
+                    </div>
+                     <div class="slds-grid slds-gutters form" style="padding-top: 15px;"> 
+                        <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                            <lightning-input  label="Address" placeholder="233 devonshire blvd" required="" > </lightning-input>
+                        </div>
+                        <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                            <lightning-input  label="Address 2" placeholder="" > </lightning-input>
+                        </div>
+                    </div>
+                  <div class="slds-grid slds-gutters form" style="padding-top: 15px;"> 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                        <lightning-input  label="City" placeholder="sharon" disabled=""> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                        <lightning-input  label="Postal Code" placeholder="9470" required="">  </lightning-input>
+                    </div>
+                 </div>
+
+                 <div class="slds-grid slds-gutters form" style="padding-top: 15px;"> 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                        <lightning-textarea label="Company Information " style="height: 118px;"  placeholder="We sell software" required=""> </lightning-textarea>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                        <lightning-combobox   label="Company Size" placeholder="-Select one-" value={value}   disabled="" >  </lightning-combobox >
+                    </div>
+                </div>
+                </div>
+            </template>
+
+            <!-- Second Page -->
+            <template if:true={showSecondPage} >
+            <div style="margin-left:22px; margin-right:22px;">     
+            <p class="field"> Billing Contact </p>
+            <div class="slds-grid slds-gutters form">
+              <div class="slds-col slds-p-right_large slds-size_1-of-3 ">
+               <lightning-input  label="Name" class="labclssty" placeholder="Admin within" required> </lightning-input>
+              </div>
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Email Address" placeholder="Enter a valid email address" pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,5})$" required > </lightning-input>
+              </div>
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Phone Number" placeholder="Enter your phone +141155656" required> </lightning-input>
+              </div>
+            </div>
+
+            <p class="field"> Marketing Contact </p>
+            <div class="slds-grid slds-gutters form"> 
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Name" placeholder="" required> </lightning-input>
+              </div>
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Email Address" placeholder="" required> </lightning-input>
+              </div>
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Phone Number" placeholder="" required> </lightning-input>
+              </div>
+            </div>
+             <p class="field"> Sales Contact </p>
+            <div class="slds-grid slds-gutters form"> 
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                
+                <lightning-input  label="Name" placeholder="" required> </lightning-input>
+              </div>
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Email Address" placeholder="" required> </lightning-input>
+              </div>
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Phone Number" placeholder="" required> </lightning-input>
+              </div>
+            </div>
+
+            <p class="field"> Technical  Contact </p>
+            <div class="slds-grid slds-gutters form"> 
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                
+                <lightning-input  label="Name" placeholder="" required> </lightning-input>
+              </div>
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Email Address" placeholder="" required> </lightning-input>
+              </div>
+              <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                <lightning-input  label="Phone Number" placeholder="" required> </lightning-input>
+              </div>
+            </div>
+            <div class="slds-grid" style="margin-top: 23px;">
+                <div class="slds-col slds-size_6-of-12 form">
+                   <p class="field"> Partner Industries </p>
+                      <lightning-dual-listbox name="partner"
+                                source-label="Available"
+                                selected-label="Chosen"
+                                options={optionsPartner}
+                                onchange={handleChangePartner}>
+                        </lightning-dual-listbox>
+                </div> 
+
+                 <div class="slds-col slds-size_3-of-12 form" >
+                            <p class="field"> Target Client Base</p> <p class="form" > please select all that apply </p>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Education" onchange={handleChangeTracks}   style="padding-top: 25px;"> </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Enterprise" checked="" disabled="" onchange={handleChangeTracks} > </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Government - Local" onchange={handleChangeTracks} > </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Government - National" onchange={handleChangeTracks} > </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Mid-size Business" onchange={handleChangeTracks} > </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Non-Profit" onchange={handleChangeTracks} > </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Startup" onchange={handleChangeTracks} > </lightning-input>
+                </div>
+
+
+                <div class="slds-col slds-size_3-of-12 form" >
+                            <p class="form" required>What primary geographies does your organization target for your go-to-market efforts? </p >
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="North America" onchange={handleChangeTarget} checked=""  style="padding-top: 25px;"> </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="LATAM" onchange={handleChangeTarget} checked=""> </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="EMEA" onchange={handleChangeTarget} checked=""> </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="APAC" onchange={handleChangeTarget} > </lightning-input>
+                            <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Other" onchange={handleChangeTarget} > </lightning-input>
+                </div>
+                </div>
+                 
+                <div class="slds-grid slds-gutters form " style="margin-top: 15px;" > 
+                  <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                        <lightning-combobox   label="Annual Revenue" value={value} placeholder="5,000,000 - 9,999,999"
+                        options={Revenue}
+                        onchange={optionsRevenueChange}> </lightning-combobox>
+                  </div>
+                  <div class="slds-col slds-p-right_large slds-size_1-of-2 ">
+                        <lightning-combobox   label="Are you working with a Datadog Partner Development Representative?" value={value}
+                        options={options1}
+                        onchange={handleChange1} required> </lightning-combobox>
+                  </div>
+                </div>
+                
+                <div class="slds-grid slds-gutters form" style="padding-top: 15px;"> 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2"    style="padding-top: 17px;">
+                        <lightning-textarea  label="Why are you interested in partnering with Datadog?" placeholder="$$" required> </lightning-textarea>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2 company">
+                        <lightning-textarea  label="Please describe your organization's prior experience as an MSP, Reseller, SI and/or Referral partner" placeholder="Test - please ignore.....we have sold a LOT of stuff" required> </lightning-textarea>
+                    </div>
+                </div>
+
+            <div class="slds-grid slds-gutters form" style="padding-top: 18px; padding-bottom: 20px;" >
+                    <div class="slds-col slds-p-right_large slds-size_1-of-4">
+                        <p style="padding-bottom: 26px;" >Do you currently partner with any of the following public cloud providers? </p>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Amazon Web Services" onchange={cloudProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Google Cloud Platform" onchange={cloudProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Microsoft Azure" onchange={cloudProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="IBM Cloud" onchange={cloudProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="AlibabaCloud" onchange={cloudProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Other" onchange={cloudProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="We don’t partner with any cloud providers" onchange={cloudProviders} > </lightning-input>
+                    </div>
+          
+                 <div class="slds-col slds-p-right_large slds-size_1-of-4">
+                        <p style="padding-bottom: 26px;">Do you currently partner with any of the application monitoring providers? </p>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="New Relic" onchange={monitoringProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Cisco AppDynamics" onchange={monitoringProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Dynatrace" onchange={monitoringProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Broadcom CA" onchange={monitoringProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Other" onchange={monitoringProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="We don’t partner with any other application monitoring providers" onchange={monitoringProviders} > </lightning-input>
+                </div>
+                 <div class="slds-col slds-p-right_large slds-size_1-of-4">
+                        <p style="padding-bottom: 26px;">Do you currently partner with any of the log management providers?</p>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Splunk" onchange={managementProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Sumo Logic" onchange={managementProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Elastic" onchange={managementProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Logz.io" onchange={managementProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="ELK" onchange={managementProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Other" onchange={managementProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="We don’t partner with any other log management providers" onchange={managementProviders} > </lightning-input>
+                </div>
+                  <div class="slds-col slds-p-right_large slds-size_1-of-4">
+                        <p style="padding-bottom: 26px;">Do you currently partner with any of the security information and event management providers?</p>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Splunk" onchange={securityProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Exabeam" onchange={securityProviders} checked=""> </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Elastic" onchange={securityProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Sumo Logic" onchange={securityProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="Other" onchange={securityProviders} > </lightning-input>
+                        <lightning-input  class="slds-p-left_xx-small" type="checkbox" label="We don’t partner with any other SIEM providers" onchange={securityProviders} > </lightning-input>
+                    </div>
+                  </div>
+            </div>
+            </template>
+
+            <!-- Third Page -->
+            <template if:true={showThirdPage}>
+                <div style="margin-left:22px; margin-right:22px;">  
+                <p class="field"> MSP Agreements</p> 
+                <p >This agreements has already been accepted by Admin Within Test. Datadog acceptance status pending. </p>
+                <div class="slds-grid slds-gutters form "> 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3"> 
+                         <lightning-input  label="Member Accepting Terms" placeholder="Beian Weigel"> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                        <lightning-input  label="Acceptance Timestamp" placeholder="01/20/2022 15:51PM"> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                        <lightning-input  label="Acceptance IP Address" placeholder=".43.0.1.5"> </lightning-input>
+                    </div>
+                </div>
+
+                <p class="field">Reseller Agreements</p>
+                 <p >This agreements has already been accepted by Admin Within Test. Datadog acceptance status pending. </p>
+                 <div class="slds-grid slds-gutters form"> 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3"> 
+                        <lightning-input  label="Member Accepting Terms" placeholder="Beian Weigel"> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                        <lightning-input  label="Acceptance Timestamp" placeholder="01/20/2022 15:51PM"> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                        <lightning-input  label="Acceptance IP Address" placeholder=".43.0.1.5"> </lightning-input>
+                    </div>
+                </div>
+
+                <p class="field">Technology Agreements</p>
+                <p class="description">This agreements has already been accepted by Admin Within Test. Datadog acceptance status pending. </p>
+                <div class="slds-grid slds-gutters  form" style="padding-bottom: 20px;"> 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3"> 
+                        <lightning-input  label="" placeholder="Beian Weigel"> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                        <lightning-input  label="" placeholder="01/20/2022 15:51PM"> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-3">
+                        <lightning-input  label="" placeholder=".43.0.1.5"> </lightning-input>
+                    </div>
+                </div>
+               
+            </div>
+            </template>
+
+
+            <!-- Fourth Page -->
+            <template if:true={showFourthPage}>
+                <div style="margin-left:22px; margin-right:22px;">   
+                <p class="field">Business Background and Compliance</p>
+                <div class="slds-grid slds-gutters form" style="padding-top: 15px;" > 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                    <lightning-input  label="Partner full legal name" placeholder="Test - please ignore" required> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                    <lightning-input  label="Partner entity type (e.g., corporation, limited company)" placeholder="Test - please ignore" required> </lightning-input>
+                    </div>
+                 </div>
+                <div class="slds-grid slds-gutters form" style="padding-top: 15px;" > 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                        <lightning-input  label=" Year Partner was formed" placeholder="1998" required> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                        <lightning-input  label="Jurisdiction where Partner was formed" placeholder="Deleware" required> </lightning-input>
+                    </div>
+                </div>
+                 <div class="slds-grid slds-gutters form"  style="padding-top: 15px;"> 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                    <lightning-input  label="Local Jurisdiction(s) where Partner operates" placeholder="California" required> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2 " >
+                    <lightning-input  label="Any prior names of Partner"  placeholder=""> </lightning-input>
+                    </div>
+                </div>
+                <div class="slds-grid slds-gutters form" style="padding-top: 15px;" > 
+                    <lightning-textarea style="margin-left: 11px; width: 1191px;" label="Names of principals, directors and key employees (including CEO, COO, CFO, CTO, CISO and General Counsel, or equivalents) of Partner " placeholder="Test, please ignore" required > </lightning-textarea>
+                </div>
+                <div class="slds-grid slds-gutters describtion"> 
+                        <p>  For purposes of the following, "Government Entity" means (i) any national, state, regional, or local government (including, in each case, any agency, department, or subdivision of such government); (ii) any political party; (iii) any entity or business that is owned or controlled by any of those bodies listed in subcategory (i) or (ii); or (iv) any international organization, such as the United Nations or the World Bank.
+                        <br >"Government Official" means (a) any director, officer, employee, agent, or representative (including anyone elected, nominated, or appointed to be a director, officer, employee, agent, or representative) of any Government Entity, or anyone otherwise acting in an official capacity on behalf of a Government Entity; (b) any political party, political party official, or political party employee; (c) any candidate for public or political office; (d) any royal or ruling family member; or (e) any agent or representative of any of those persons listed in subcategories (a) through (d).</p> 
+                </div>
+                 <div class="slds-grid slds-gutters form "  > 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                      <lightning-combobox    style="padding-top: 54px;"  label=" Is Partner a Government Entity?" 
+                      options={partnerEntity} value={value}
+                      onchange={partnerEntityChange} required> </lightning-combobox>
+                </div>
+
+                 <div class="slds-col slds-p-right_large slds-size_1-of-2 form" >
+                      <lightning-combobox label="Does Partner maintain codes, policies or procedures addressing anti-bribery and anti-corruption compliance, including prohibitions on providing illegal or improper bribes, kickbacks, payments, gifts or things of value to Government Entities and Government Officials (including members of their households and close family members)?" value={value}
+                      options={partnerEntity}
+                      onchange={partnerEntityChange} required> </lightning-combobox>
+                </div>
+                </div>
+                 <div class="slds-grid slds-gutters form" style="padding-top: 15px;"  > 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2">
+                      <lightning-combobox label="In the last 10 years, has Partner or any of its present or former principals, directors, or key employees been suspended or barred from doing business by any Government Entity?" 
+                      value={value}
+                      options={partnerEntity}
+                      onchange={partnerEntityChange} required> </lightning-combobox>
+                </div>
+                 <div class="slds-col slds-p-right_large slds-size_1-of-2 form">
+                      <lightning-combobox  label=" Does any Government Entity or Government Official own 10% or more of the outstanding stock (or other equity interest) of Partner or otherwise control Partner?" value={value}
+                      options={partnerEntity}
+                      onchange={partnerEntityChange} required> </lightning-combobox>
+                </div>
+                </div>
+                <div class="slds-grid slds-gutters " style="padding-bottom: 20px; padding-top: 15px;" > 
+                    <div class="slds-col slds-p-right_large slds-size_1-of-2 form">
+                      <lightning-combobox label="Is Partner or any of its owners, principals, directors, or key employees a current or former Government Official, a representative or agent of a Government Official, or a member of the same household or close family member of a Government Official?" 
+                      value={value}
+                      options={partnerEntity}
+                      onchange={partnerEntityChange}> </lightning-combobox>
+                </div> 
+                <div class="slds-col slds-p-right_large slds-size_1-of-2 form">
+                      <lightning-combobox    label="In the last 10 years, has Partner or any of its present or former principals, directors, or key employees been the subject of any investigation or litigation involving allegations or improper business conduct such as fraud, bribery, collusion or tax evasion?" value={value}
+                      options={partnerEntity}
+                      onchange={partnerEntityChange} required> </lightning-combobox>
+                    </div>
+                  </div>
+                </div>
+            </template>
+
+            <!-- Footer -->
+            <footer class="slds-modal__footer slds-align_absolute-center" style="padding: 0.50rem 1rem;">
+                <template if:true={showFirstPage}>
+                    <lightning-button label="Next" variant="neutral" value="2" onclick={nextPage}></lightning-button>
+                </template>
+                <template if:true={showSecondPage}>
+                    <lightning-button class="slds-p-right_xx-small" label="Previous" variant="neutral" value="1" onclick={previousPage}></lightning-button>
+                    <lightning-button label="Next" variant="neutral" value="3" onclick={nextPage}></lightning-button>
+                </template>
+                <template if:true={showThirdPage}>
+                    <lightning-button class="slds-p-right_xx-small" label="Previous" variant="neutral" value="2" onclick={previousPage}></lightning-button>
+                    <lightning-button label="Next" variant="neutral" value="4" onclick={nextPage}></lightning-button>
+                </template>
+                 <template if:true={showFourthPage}>
+                    <lightning-button class="slds-p-right_xx-small" label="Previous" variant="neutral" value="3" onclick={previousPage}></lightning-button>
+                    <lightning-button label="Save" variant="brand"></lightning-button>
+                </template>
+            </footer>
+        </template>
+
+    </div>
+
+</template>

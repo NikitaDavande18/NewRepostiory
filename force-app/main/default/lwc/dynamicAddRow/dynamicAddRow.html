@@ -1,0 +1,61 @@
+<template>
+                  
+    <div class="slds-m-around--xx-large">
+        <div class="slds-float_right slds-p-bottom_small">
+            <h1 class="slds-page-header__title">Add Row
+                <lightning-button-icon icon-name="utility:add"  size="large" variant="bare" alternative-text="Add" onclick={addRow}> </lightning-button-icon>
+            </h1>
+        </div>
+        <div class="container-fluid">        
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer"> 
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate">#</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Account Name">Account Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Account Number">Account Number</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Phone">Phone</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                    </tr>
+                </thead>   
+                <tbody>      
+                    
+                    <template for:each={accountList} for:item="acc" for:index="index">
+                        <tr key={acc.Id}> 
+                            <td>{index}</td>                                                  
+                            <td>
+                                <lightning-input label="Name" value={acc.Name} onchange={handleNameChange}></lightning-input>                               
+                            </td>
+                            <td>
+                                <lightning-input label="Account Number" value={acc.AccountNumber} onchange={handleAccountNumberChange}></lightning-input>                        
+                            </td>
+                            <td>
+                                <lightning-input label="Phone" value={acc.Phone} onchange={handlePhoneChange}></lightning-input>
+                            </td>
+                            <td>
+                                <a onclick={removeRow}> 
+                                    <lightning-icon icon-name="utility:delete" size="small" style="margin-top: -4px; margin-right: 0px;" ></lightning-icon>
+                                    <span class="slds-assistive-text">Delete</span>
+                                </a>
+                            </td> 
+                        </tr>
+                    </template>
+                     
+                </tbody>
+            </table>
+            <div class="slds-align_absolute-center slds-p-top_small">                
+                <lightning-button name="Save" label="Save" onclick={saveRecord} ></lightning-button>
+            </div>
+        </div>
+    </div>
+
+</template>

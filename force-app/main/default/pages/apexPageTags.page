@@ -1,0 +1,21 @@
+<apex:page >
+<apex:form >
+  <apex:pageBlock title="First page Block">
+  <apex:pageBlockSection title="First Section of page">
+   // <apex:commandButton value="NEW"/>
+  <apex:pageBlockSectionItem >Salesforce Developer</apex:pageBlockSectionItem>
+  <apex:pageBlockSectionItem >Salesforce Admin</apex:pageBlockSectionItem>
+  <apex:pageBlockSectionItem >Php Developer</apex:pageBlockSectionItem>
+  
+  </apex:pageBlockSection> 
+  <apex:pageBlockSection title="Second Section of page">
+    <apex:pageBlockSectionItem >java Developer</apex:pageBlockSectionItem>
+  <apex:pageBlockSectionItem >Admin</apex:pageBlockSectionItem>
+  <apex:pageBlockSectionItem >Python Developer</apex:pageBlockSectionItem>
+  </apex:pageBlockSection>
+  <apex:pageblockButtons > <apex:commandButton value="SAVE"/>  <apex:commandButton value="CANCEL"/></apex:pageblockButtons>
+ 
+  
+  </apex:pageBlock>
+  </apex:form>
+</apex:page>

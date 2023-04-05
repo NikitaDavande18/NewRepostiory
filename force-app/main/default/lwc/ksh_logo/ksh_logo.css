@@ -1,0 +1,35 @@
+.logo-container {
+    width: 45px;
+    height: 47px;
+}
+
+.logo-text {
+    padding-left: 0;
+}
+
+.logo-text > h1 {
+    margin-top: 10px;
+    font-size: 20pt;
+}
+.logo-text > img{
+    width: 230px;
+    padding-top: 1px;
+}
+
+.logo-container.slds-m-left_large {
+    margin-left: 0;
+}
+
+.kisan-color {
+    color: #6fb74d !important;
+    -webkit-print-color-adjust: exact !important;  
+    color-adjust: exact !important;
+    print-color-adjust: exact !important; 
+}
+
+.hub-color {
+    color: #f1c50e !important;
+    -webkit-print-color-adjust: exact !important;  
+    color-adjust: exact !important;
+    print-color-adjust: exact !important; 
+}

@@ -1,0 +1,5 @@
+<apex:page controller="one"  >
+    <apex:form > 
+       <apex:commandButton value="Fetch" action="{!channel_acts}"/>
+</apex:form>
+</apex:page>

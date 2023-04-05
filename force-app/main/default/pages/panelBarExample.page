@@ -1,0 +1,12 @@
+<apex:page >
+<apex:panelBar >
+<apex:panelBarItem label="item1"> hell how are you?</apex:panelBarItem>
+<apex:panelBarItem label="item1"> i am salesforce devloper</apex:panelBarItem>
+<apex:panelBarItem label="item1">i am computer engineer</apex:panelBarItem>
+<apex:panelBarItem label="item1">i am 22years old</apex:panelBarItem>
+</apex:panelBar>
+
+
+
+
+</apex:page>

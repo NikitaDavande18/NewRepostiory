@@ -1,0 +1,111 @@
+ltiSelectCombobox.cssCSS
+
+.verticalAlign {
+	cursor: pointer;
+    padding: 0px 5px !important;
+}
+.slds-dropdown {
+    padding:0px !important;
+}
+.recordListBox {
+	margin-top:0px !important;
+	overflow-y: scroll;
+}
+.slds-listbox li {
+    padding: .45rem 0.7rem !important;
+    display: flex;
+}
+.inputBox input {
+	padding-left: 10px;
+}
+.eachItem:hover {
+    background-color: #F1F1F1;
+    cursor: pointer;
+}
+
+/* For Scrolling */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+   display: none !important;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.4);
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+ 
+.verticalAlign {
+ cursor: pointer;
+    padding: 0px 5px !important;
+}
+.slds-dropdown {
+    padding:0px !important;
+}
+.recordListBox {
+ margin-top:0px !important;
+ overflow-y: scroll;
+}
+.slds-listbox li {
+    padding: .45rem 0.7rem !important;
+    display: flex;
+}
+.inputBox input {
+ padding-left: 10px;
+}
+.eachItem:hover {
+    background-color: #F1F1F1;
+    cursor: pointer;
+}
+ 
+/* For Scrolling */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+   display: none !important;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.4);
+}
